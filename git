@@ -1,0 +1,25 @@
+[33mcommit cb525825d9a9d59d1d5a4b87eafded24c8938742[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: 欧阳浩 <pitarouyang@163.com>
+Date:   Thu Dec 14 09:51:45 2023 +0800
+
+    Modify Psdplot and align_cut
+
+[33mcommit f8cd814e7cf174beee5750ba044230a0dae920b5[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmian[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 0e04d1f 35adc97
+Author: 欧阳浩 <pitarouyang@163.com>
+Date:   Wed Nov 29 22:42:06 2023 +0800
+
+    Merge branch 'main' of https://github.com/PitarOuYang/matlab_easy_use
+     no reason
+
+[33mcommit 0e04d1f23dea9622c36c31557695453214c12da5[m
+Author: 欧阳浩 <pitarouyang@163.com>
+Date:   Wed Nov 29 22:41:24 2023 +0800
+
+    First update
+
+[33mcommit 35adc973d7c72b2133c7d536cde922b9464752ea[m
+Author: Ouyang <32203241+PitarOuYang@users.noreply.github.com>
+Date:   Fri Oct 20 13:02:13 2023 +0800
+
+    Initial commit

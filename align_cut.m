@@ -8,7 +8,7 @@ function [ax,ay] = align_cut(x,y)
 %
 [cor,~] = xcov(x,y);
 
-[~, index] = max(cor);
+[~, index] = max(abs(cor));
 
 len = max(length(x),length(y));
 if index <= len                   %align the start point first

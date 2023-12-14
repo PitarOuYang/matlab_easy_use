@@ -1,4 +1,4 @@
-function [SpectraData,FrequencyInf,nfft] = psdplot(Data,SampleRate,Smoothing,Legend)
+function [SpectraData,FrequencyInf,plt] = psdplot(Data,SampleRate,Smoothing,Legend)
 % SPLOT: Plot power spectra density using Pwelch function.
 %   -------------------Usage------------------------
 %   psdplot(Data,SampleRate): plot the power spectra density.
@@ -13,7 +13,7 @@ function [SpectraData,FrequencyInf,nfft] = psdplot(Data,SampleRate,Smoothing,Leg
 %   smoothing and legend.
 %
 %   Getting the original spectra and frequency data by using:
-%   [SpectraData,FrequencyInf,nfft] = psdplot(Data,SampleRate,...);
+%   [SpectraData,FrequencyInf,plt] = psdplot(Data,SampleRate,...);
 %
 % ---------------INPUTS AND OUTPUTS----------------
 % SpectraData: output spectra data (Amplitude^2/Hz)
@@ -36,29 +36,30 @@ function [SpectraData,FrequencyInf,nfft] = psdplot(Data,SampleRate,Smoothing,Leg
 % Author: Ouyang
 
 len = length(Data);
-overlap = 1;
+overlap = 4;
 nfft = 2^(nextpow2(len) - overlap);  %To get a better precise spectral estimate, choose a larger overlap
 % nfft = ceil(0.3*length(Data));
 % nfft = len;
-window = hann(nfft);
+window = hann(len);
 [SpectraData,FrequencyInf] = pwelch(Data,window,nfft/2,nfft,SampleRate);  %(SpectraData,window,noverlap,nfft,fs)
+% [SpectraData,FrequencyInf] = periodogram(Data,window,[],SampleRate,'onesided');
 spp = sqrt(SpectraData);
 if (nargin < 3)
     Smoothing = 1;
     smooth_sp = smooth(spp,Smoothing);
-    loglog(FrequencyInf,smooth_sp,'LineWidth',1)
+    plt = loglog(FrequencyInf,smooth_sp,'LineWidth',1);
 elseif (nargin == 3 && isnumeric(Smoothing))
     smooth_sp = smooth(spp,Smoothing);
-    loglog(FrequencyInf,smooth_sp,'LineWidth',1)
+    plt = loglog(FrequencyInf,smooth_sp,'LineWidth',1);
 elseif (nargin == 3 && ischar(Smoothing))
     Legend = Smoothing;
     Smoothing = 1;
     smooth_sp = smooth(spp,Smoothing);
-    loglog(FrequencyInf,smooth_sp,'LineWidth',1,'DisplayName',Legend)
+    plt = loglog(FrequencyInf,smooth_sp,'LineWidth',1,'DisplayName',Legend);
 elseif (nargin == 4)
 %     Smoothing = 1;
     smooth_sp = smooth(spp,Smoothing);
-    loglog(FrequencyInf,smooth_sp,'LineWidth',1,'DisplayName',Legend)
+    plt = loglog(FrequencyInf,smooth_sp,'LineWidth',1,'DisplayName',Legend);
 end
 % set axis form
     xlabel('Frequency(Hz)')
